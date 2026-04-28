@@ -21,6 +21,12 @@ cloudinary.config(
     api_secret= os.environ.get('BBFCVkSGh-bQgJOoKA0eajZRSRU'),
 )
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('dqqlbxrtv'),
+    'API_KEY':    os.environ.get('412491169887115'),
+    'API_SECRET': os.environ.get('BBFCVkSGh-bQgJOoKA0eajZRSRU'),
+}
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -129,6 +135,14 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
+
+import dj_database_url
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600
+    )
+}
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
