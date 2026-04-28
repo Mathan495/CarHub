@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'carselling',
     'cloudinary',
-    'cloudinary_storage'
 ]
 
 MIDDLEWARE = [
