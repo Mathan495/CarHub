@@ -12,7 +12,14 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 import os
 import django_heroku
 import dj_database_url
+import cloudinary
 from pathlib import Path 
+
+cloudinary.config(
+    cloud_name= os.environ.get('dqqlbxrtv'),
+    api_key = os.environ.get('412491169887115'),
+    api_secret= os.environ.get('BBFCVkSGh-bQgJOoKA0eajZRSRU'),
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,9 +32,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=35io=m4#*bfu$%50_v5uow-l*dypemsktl5_%aj5ig)c3nm2q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['carhub-1-p6rn.onrender.com']
 
 
 # Application definition
@@ -40,7 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'carselling'
+    'carselling',
+    'cloudinary',
+    'cloudinary_storage'
 ]
 
 MIDDLEWARE = [
@@ -114,14 +123,19 @@ USE_I18N = True
 
 USE_TZ = True
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static')) 
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 django_heroku.settings(locals()) 
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
