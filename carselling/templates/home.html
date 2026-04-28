@@ -1,0 +1,108 @@
+{% extends 'main.html' %} 
+{% block title %} CarHub {% endblock title %} 
+{% block content %} 
+{% include 'inc/slider.html' %}
+<div class="container" style="margin-top: 70px">
+  <div class="row">
+    <section class="bg-dark text-white text-center p-5">
+      <h1 class="fw-bold">Find Your Dream Car Today</h1>
+      <p>Best deals on new and used cars</p>
+      <a href="{% url 'collections' %}" class="btn btn-primary mt-3">Browse Cars</a>
+    </section>
+    <div class="container my-4">
+      <form method="GET" action="">
+        <div class="row g-2">
+          <div class="col-md-4">
+            <input type="text" name="search" class="form-control" placeholder="Search cars...">
+          </div>
+          <div class="col-md-3">
+            <select name="fuel" class="form-select">
+              <option value="">Fuel Type</option>
+              <option>Petrol</option>
+              <option>Diesel</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <select name="price" class="form-select">
+              <option value="">Price Range</option>
+              <option value="low">Below 5L</option>
+              <option value="mid">5L - 15L</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary w-100">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-12">
+      <h3>Latest Cars</h3>
+    </div>
+
+    {% for item in product %}
+    <div class="col-md-4 col-lg-3">
+      <div class="card my-3 bg-light" style="padding: 10px;">
+        <img src="{{ item.image.url }}" class="card-image-top" alt="cars" />
+        <a href="{% url 'car_details' item.brand.name item.name %}">
+          <div class="card-body">
+            <h5 class="card-title" style="color: black">{{ item.name }}</h5>
+            <p class="card-text">
+              <span class="float-start old_price"
+                ><s>Rs.{{ item.original_price | stringformat:'d'}}</s></span
+              >
+              <span class="float-end new_price"
+                >Rs.{{ item.selling_price | stringformat:'d' }}</span
+              >
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h3>Popular Brands</h3>
+    </div>
+    {% for item in brand %}
+    <div class="col-md-4 col-lg-3">
+      <div class="card my-3">
+        <img src="{{ item.image.url }}" class="card-image-top brandimg" alt="Brands" />
+        <a href="{% url 'collections' item.name %}">
+          <div class="card-body">
+            <h5 class="card-title" style="color: black">{{ item.name }}</h5>
+          </div>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="container my-5">
+      <h3 class="text-center mb-4">What Our Customers Say</h3>
+      <div class="row">
+        <div class="col-12 col-md-4 mb-3">
+          <div class="card bg-dark p-3 shadow h-100" style="color: white;display:flex; text-align: center; align-items: center;">
+            <p>"Great service and smooth booking experience!"</p>
+            <h6>- Rahul</h6>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mb-3">
+          <div class="card bg-dark p-3 shadow h-100" style="color: white;display:flex; text-align: center; align-items: center;">
+            <p>"Excellent support and quick response. The test drive process was very easy."</p>
+            <h6>- Priya</h6>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mb-3">
+          <div class="card bg-dark p-3 shadow h-100" style="color: white;display:flex; text-align: center; align-items: center;">
+            <p>"Wide range of cars and best prices. Highly recommend this platform!"</p>
+            <h6>- Arjun</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-primary text-white text-center p-5 mb-4">
+      <h3>Ready to book your dream car?</h3>
+      <a href="{% url 'collections' %}" class="btn btn-light mt-2">Explore Now</a>
+    </div>
+</div>
+{% endblock content %}

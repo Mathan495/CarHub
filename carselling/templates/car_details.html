@@ -1,0 +1,116 @@
+{% extends 'main.html' %}
+{% block title %}
+    CarHub
+{% endblock title %}
+{% block content %}
+<section class="bg-light py-4 my-5" style="min-height:600px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h4 class="mb-3">{{ product }} Details</h4>
+        <hr style="border-color:#b8bfc2;">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'collections' product.brand %}">Categories</a></li>
+            <li class="breadcrumb-item active">{{ product }} Model</li>
+          </ol>
+        </nav>
+        {% include 'inc/message.html' %}
+      </div>
+    </div>
+    <div class="row mt-3 g-4">
+      <div class="col-6"><h1>{{ product.name }}</h1></div>
+      <div class="col-md-7">
+        <img src="{{product.image.url}}"  class="card-image-top" style="width: 450px; margin-bottom:18px" alt="car_Models"> 
+        <h5 class="text-success"><b style="font-size: 18px;">Model</b> : {{ product.brand }}</h5> 
+        <p>{{ product.description }}</p>
+        <p style="font-size: 17px;"><b style="font-size: 18px;">Rating</b> : ⭐⭐⭐⭐⭐</p> 
+        <p style="font-size: 17px;"><b style="font-size: 18px;">Manufacture Year</b> : {{ product.year }}</p>
+        <p style="font-size: 17px;"><b style="font-size: 18px;">Fuel Type</b>  : {{ product.fuel_type }}</p>
+
+        <p style="font-size: 17px;"><b style="font-size: 18px;">Location</b> : Chennai, Tamilnadu</p>
+        <p style="font-size: 17px;"><b style="font-size: 18px;">Transmission Rating</b> : Manual</p>
+        <p style="font-size: 17px;"><b style="font-size: 18px;">Warranty</b> : 3 Years Warranty</p>
+        
+        <p style="font-size: 17px;"><b style="font-size: 18px;">Services</b> : 3 Free Services Available</p>
+        <h6 class="my-2 text-danger"><b style="font-size: 18px;">Current Price</b> : Rs.<s>{{ product.original_price }}</s></h5>
+        <h5 class="my-2 text-primary"><b style="font-size: 18px;">Offer Price</b> : Rs.{{ product.selling_price }}</h5>
+        <div class="my-3">
+          {% if product.quantity > 0 %}
+          <button class="btn btn-primary">Available</button> 
+          {% else %}
+          <button class="btn btn-secondary"><i class="fa fa-minus"></i> Out of Stock</button>
+          {% endif %}
+          <button class="btn btn-danger" id="btnFav"><i class="fa fa-heart"></i> Add to Favourite</button>
+        </div>
+      </div>
+      <div class="col-md-5 g-4">
+        <div class="card p-5 shadow">
+          <form method="POST" action=""> 
+            {% csrf_token %}
+            <div class="mb-4">
+              <label for="" class="form-label">Name</label>
+                <input type="text" name="username" id="username" class="form-control" placeholder="Enter Username" required>
+            </div> 
+            <div class="mb-4">
+              <label for="" class="form-label">Mobile Number</label>
+                <input type="text" name="number" id="Number" class="form-control" placeholder="Enter Password" required>
+            </div> 
+            <div class="mb-4">
+              <label for="" class="form-label">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Enter Password" required>
+            </div> 
+            <div class="my-3">
+                <button type="submit" style="padding: 10px 15px;" class="btn btn-primary">Book A Test Drive</button>
+            </div>
+            
+            </form>
+        </div>
+    </div>
+    </div>
+    {% comment %} Services Sections {% endcomment %}
+    <div class="row mt-5 g-4">
+      <div style="font-size: 16px;">
+        <h4>Description :</h4>
+        <p>This vehicle is designed to deliver a perfect balance of performance, comfort, and modern technology, making it an ideal choice 
+          for both city driving and long journeys. Built with a strong and stylish exterior, the car offers a bold road presence while 
+          maintaining excellent fuel efficiency and reliability.</p>
+        <p>
+          Inside, the cabin is thoughtfully designed with premium materials, spacious seating, and advanced features to ensure maximum comfort for
+           both the driver and passengers. The intuitive dashboard layout, smooth steering control, and responsive braking system
+            provide a confident and enjoyable driving experience.
+        </p>
+        <p>The car is equipped with a powerful engine that delivers consistent performance while maintaining good mileage, making it suitable for daily commuting as well
+           as highway travel. Safety is a top priority, with features such as airbags, ABS, and stability 
+           control ensuring peace of mind on every trip.</p>
+        <p>Additionally, this vehicle comes with low maintenance requirements, excellent resale value, and trusted brand reliability, making it a smart investment for customers looking for both quality and affordability.
+          Whether you are a first-time buyer or upgrading your current vehicle, this car offers everything you need — style, comfort, performance, 
+          and safety — all in one package.</p>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center shadow p-4 h-100">
+          <h5>Free Services</h5>
+          <p>3 Free Services Available</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card text-center shadow p-4 h-100">
+          <h5>Warranty</h5>
+          <p>3 Years Warranty</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card text-center shadow p-4 h-100">
+          <h5>Support</h5>
+          <p>24/7 Customer Support</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+{% endblock content %}

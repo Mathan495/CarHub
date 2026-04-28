@@ -1,0 +1,44 @@
+{% extends 'main.html' %} 
+{% block title %} collections {% endblock title %} 
+
+{% block content %}
+<section class="py-5 text-center container"  style="margin-top:70px;">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Bestsellers</h1>
+        <p class="lead text-muted">Our most popular products based on sales. Updated hourly.</p>
+        <p>
+          <a href="{% url 'login' %}" class="btn btn-primary my-2">Already User</a>
+          <a href="{% url 'register' %}" class="btn btn-secondary my-2">Register</a>
+        </p>
+      </div>
+    </div>
+</section>
+<section class="bg-light py-4 my-5" style="margint-top:0px; min-height:600px">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h4 class="mb-3">Popular Brands</h4>
+          <hr style="border-color:#b8bfc2;">
+          {% include 'inc/message.html' %}
+        </div>
+        {% for brand in brands %}
+        <div class="col-md-4 col-lg-3">
+          <div class="card my-3">
+            <a href="{% url 'collections' brand.name %}">
+            <img src="{{brand.image.url}}"  class="card-image-top" style="width: 260px;" alt="brands">
+            </a>
+            <a href="{% url 'collections' brand.name %}">
+            <div class="card-body">
+              <h5 class="card-title text-dark" style="font-size:18px;">{{ brand.name }}</h5>
+              <p class="card-text" style="color: grey; font-size:15px;">{{ brand.description }}</p>  
+            </div>
+          </a>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+      </div>
+  </section>
+{% endblock content %}

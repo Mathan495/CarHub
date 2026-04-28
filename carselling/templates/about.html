@@ -1,0 +1,99 @@
+{% extends 'main.html' %} 
+{% load static %}
+{% block title %} CarHub {% endblock title %} 
+{% block content %} 
+<section class="bg-light py-5" style="margin-top: 40px;">
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">About Us</h2>
+      <p class="text-muted">
+        Your trusted platform for buying and exploring the best cars
+      </p> 
+    </div>
+
+    <!-- ABOUT CONTENT -->
+    <div class="row align-items-center g-4">
+
+      <!-- IMAGE -->
+      <div class="col-md-6">
+        <img src="{% static 'images/c-4s.jpg' %}" class="img-fluid rounded shadow" alt="about">
+      </div>
+
+      <!-- TEXT -->
+      <div class="col-md-6">
+        <h3 class="fw-bold">CARHUB</h3>
+        <p class="text-muted">
+          We are a modern car marketplace designed to help users find their perfect vehicle with ease. 
+          Our platform provides a wide range of cars from trusted brands, ensuring quality, reliability, and affordability.
+        </p>
+
+        <p class="text-muted">
+          From browsing cars to booking test drives, we simplify every step of your car buying journey.
+        </p>
+
+        <a href="{% url 'collections' %}" class="btn btn-primary mt-3">
+          Explore Cars
+        </a>
+      </div>
+
+    </div>
+
+    <!-- FEATURES / WHY CHOOSE US -->
+    <div class="row mt-5 text-center g-4">
+
+      <div class="col-md-3">
+        <div class="card p-4 shadow h-100">
+          <h5>Trusted Platform</h5>
+          <p class="text-muted">Verified cars from reliable sellers</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card p-4 shadow h-100">
+          <h5>Best Prices</h5>
+          <p class="text-muted">Competitive pricing and great deals</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card p-4 shadow h-100">
+          <h5>Easy Booking</h5>
+          <p class="text-muted">Book test drives in just a few clicks</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card p-4 shadow h-100">
+          <h5>24/7 Support</h5>
+          <p class="text-muted">We’re here to help anytime</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MISSION SECTION -->
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <div class="card p-4 shadow">
+          <h4 class="fw-bold">Our Mission</h4>
+          <p class="text-muted">
+            Our mission is to make car buying simple, transparent, and accessible for everyone. 
+            We aim to provide a seamless experience where customers can explore, compare, and book cars confidently.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-5">
+      <h4>Ready to find your dream car?</h4>
+      <a href="{% url 'collections' %}" class="btn btn-success mt-2">
+        Browse Cars
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock content %}
